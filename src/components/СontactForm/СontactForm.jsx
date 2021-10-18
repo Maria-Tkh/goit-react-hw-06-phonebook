@@ -67,7 +67,7 @@ const ContactForm = ({ onSubmit }) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  onSubmit: ({ name, number }) => dispatch(actions.createContact(name, number)),
+  onSubmit: (name, number) => dispatch(actions.createContact(name, number)),
 });
 
 export default connect(null, mapDispatchToProps)(ContactForm);
