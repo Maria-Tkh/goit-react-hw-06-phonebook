@@ -10,9 +10,9 @@ class ContactForm extends Component {
   };
 
   handleContact = e => {
-    console.log(e.currentTarget);
-    console.log(e.currentTarget.name);
-    console.log(e.currentTarget.value);
+    // console.log(e.currentTarget);
+    // console.log(e.currentTarget.name);
+    // console.log(e.currentTarget.value);
 
     const { name, value } = e.currentTarget;
     this.setState({ [name]: value });
@@ -69,7 +69,7 @@ class ContactForm extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  onSubmit: (name, number) => dispatch(contactsActions.createContact(name, number)),
+  onSubmit: ({ name, number }) => dispatch(contactsActions.createContact(name, number)),
 });
 
 export default connect(null, mapDispatchToProps)(ContactForm);

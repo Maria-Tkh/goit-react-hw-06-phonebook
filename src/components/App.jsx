@@ -1,5 +1,4 @@
 import { Component } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 import ContactForm from './СontactForm/СontactForm';
 import ContactList from './СontactList/СontactList';
 import Filter from './Filter/Filter';
