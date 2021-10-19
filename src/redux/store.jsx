@@ -1,7 +1,7 @@
 // import { composeWithDevTools } from 'redux-devtools-extension';
 // import { combineReducers } from 'redux';
 import { configureStore } from '@reduxjs/toolkit';
-// import logger from 'redux-logger';
+import logger from 'redux-logger';
 import {
   persistStore,
   persistReducer,
@@ -33,7 +33,7 @@ const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }),
+    }).concat(logger),
 });
 
 const persistor = persistStore(store);
