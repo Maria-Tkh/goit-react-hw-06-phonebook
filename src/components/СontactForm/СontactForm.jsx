@@ -1,11 +1,14 @@
 import { useState } from 'react';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { getContacts } from '../../redux/selectors';
 import actions from '../../redux/actions';
 import { Form, Input, Button } from './СontactForm.styled';
 
-const ContactForm = ({ onSubmit }) => {
+const ContactForm = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
+  const dispatch = useDispatch();
+  const allContacts = useSelector(getContacts);
 
   const handleContact = e => {
     const { name, value } = e.currentTarget;
@@ -25,10 +28,19 @@ const ContactForm = ({ onSubmit }) => {
 
   const handleSubmitContact = e => {
     e.preventDefault();
-    onSubmit(name, number);
-    // e.target.reset();
+    newContact();
     setName('');
     setNumber('');
+  };
+
+  const newContact = () => {
+    const contactToCheck = {
+      name,
+      number,
+    };
+    allContacts.some(contact => contact.name === contactToCheck.name)
+      ? alert(`${contactToCheck.name} is already in contacts`)
+      : dispatch(actions.createContact(name, number));
   };
 
   return (
@@ -66,10 +78,4 @@ const ContactForm = ({ onSubmit }) => {
   );
 };
 
-const mapDispatchToProps = dispatch => ({
-  onSubmit: (name, number) => dispatch(actions.createContact(name, number)),
-});
-
-// console.log(contact);
-
-export default connect(null, mapDispatchToProps)(ContactForm);
+export default ContactForm;
