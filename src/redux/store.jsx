@@ -1,5 +1,3 @@
-// import { composeWithDevTools } from 'redux-devtools-extension';
-// import { combineReducers } from 'redux';
 import { configureStore } from '@reduxjs/toolkit';
 import logger from 'redux-logger';
 import {
@@ -21,8 +19,6 @@ const contactsPersistConfig = {
   blacklist: ['filter'],
 };
 
-// const middleware = [...getDefaultMiddleware(), logger]
-
 const store = configureStore({
   reducer: {
     contacts: persistReducer(contactsPersistConfig, contactsReducer),
@@ -40,12 +36,3 @@ const persistor = persistStore(store);
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default { store, persistor };
-
-// const rootReducer = combineReducers({
-//   contacts: persistReducer(persistConfig, contactsReducer),
-// });
-
-// const persistedReducer = persistReducer(persistConfig, rootReducer)
-
-// const store = createStore(rootReducer, composeWithDevTools());
-// console.log(process.env.NODE_ENV);
